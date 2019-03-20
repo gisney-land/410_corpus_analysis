@@ -1,0 +1,6 @@
+# let's ignore some uncessary files to make it clean
+*/__pycache__/
+*.pyc
+venv/*
+.idea/*
+.DS_Store
