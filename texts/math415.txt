@@ -1,0 +1,1219 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week 15
+
+Worksheet 14, week of December 3rd, 2018
+
+Computations.
+
+1. ∗
+(1) Find the Fourier coefficients a0, a1, b1, a2, b2 of the function
+
+f(x) =
+
+{
+1 x ∈ [0, 2π]
+0 otherwise
+
+(2) Can you find formulas for ak and bk?
+
+Solution. We use the formulas for the Fourier transform and the fact that integrating sin or
+cos over a full period yields zero, to get:
+
+a0 =
+1
+
+2π
+
+∫ 2π
+0
+
+f(x)dx =
+1
+
+2π
+
+∫ 2π
+0
+
+dx = 1,
+
+ak =
+1
+
+π
+
+∫ 2π
+0
+
+f(x) cos(kx)dx =
+1
+
+π
+
+∫ 2π
+0
+
+cos(kx)dx = 0,
+
+and,
+
+bk =
+1
+
+π
+
+∫ 2π
+0
+
+f(x) sin(kx)dx =
+1
+
+π
+
+∫ 2π
+0
+
+sin(kx)dx = 0
+
+�
+
+2. Decide if the following matrices are positive definite, negative definite or indefinite
+
+(1) A =
+
+ 2 −1 −1−1 2 −1
+−1 −1 2
+
+
+(2) ∗ B =
+
+ 2 −1 −1−1 2 1
+−1 1 2
+
+
+(3) C =
+
+0 1 21 0 1
+2 1 0
+
+2
+
+Solution. We use the leading minors test on the first 2.
+
+(1) det[2] = 2, det
+
+[
+2 −2
+−1 2
+
+]
+= 3, but det
+
+ 2 −1 −1−1 2 −1
+−1 −1 2
+
+ = 0 so A is not definite.
+(2) det[2] = 2 > 0, det
+
+[
+2 −2
+−1 2
+
+]
+= 3, and det
+
+ 2 −1 −1−1 2 −1
+−1 −1 2
+
+ = 6. They are all positive
+so B is positive definite.
+
+(3) Note that the columns of the matrix shown are independent, since the matrix is sym-
+metric this means its eigenvalues are non-zero real numbers. Since C is the square of
+that matrix, its eigenvalues are squares of the previous eigenvalues and therefore are all
+positive. C is Positive definite.
+
+Tutoring Room hours: Monday 4-8pm, Tuesday 6-8pm, Wednesday 5-7, Thursday 4-6
+
+Piazza: https://piazza.com/class/j65464jkd255s
+
+REMEMBER: No lecture on Friday
+
+1
+
+https://piazza.com/class/j65464jkd255s
+Abel
+
+
+Abel
+
+
+
+
+�
+
+3. Consider the matrix A =
+
+[
+1 b
+b 9
+
+]
+for b ∈ R.
+
+(1) For which numbers b is the matrix positive definite?
+(2) Factor A = LDLT in terms of b, when b is in the range for positive definiteness.
+(3) Find the minimum value of 1
+
+2
+(x2 + 2bxy + 9y2)− y for b in this range.
+
+Solution. (1) We check the eigenvalues (there are more effective ways to check positive
+definiteness but we will need eigenvalues in part (2) anyways so...). The characteristic
+polynomial is p(λ) = (1−λ)(9−λ)−b2 = λ2−10λ+9−b2. Using the quadratic formula
+we get rational-conjugate eigenvalues λ1 = 5 +
+
+√
+16 + b2 and λ2 = 5−
+
+√
+16 + b2. From
+
+here, the one at risk of being negative is λ2. We need the second term to be less than 5,
+so the argument of the square root should be less than 25. This is achieved by picking
+b ∈ (−3, 3).
+
+(2) We already have the eigenvalues so we compute the eigenvectors.
+
+A− λ1I =
+[
+−4−
+
+√
+16 + b2 b
+
+b 4−
+√
+
+16 + b2
+
+]
+so the nul space equation gives (−4 −
+
+√
+16 + b2)x1 = bx2 = 0 which produces the
+
+eigenvector v1 =
+
+[
+b
+
+4 +
+√
+
+16 + b2
+
+]
+. By way of rational conjugates we know v2 =[
+
+b
+
+4−
+√
+
+16 + b2
+
+]
+. After normilizing we obtain
+
+L =
+
+ b√b2+(4+√16+b2)2 b√b2+(4+√16−b2)2
+4+
+√
+16+b2√
+
+b2+(4+
+√
+16+b2)2
+
+4−
+√
+16+b2√
+
+b2+(4−
+√
+16+b2)2
+
+ , D = [5 +√16 + b2 0
+0 5−
+
+√
+16 + b2
+
+]
+(3) Let q denote the quadratic form in question. To find the critical point we want to make
+
+the gradient zero. qx = x+ by, qy = bc = x+ 9y− 1. So the critical point occurs at the
+
+solution of the system A
+
+[
+x
+y
+
+]
+=
+
+[
+0
+1
+
+]
+, which is y = 1
+
+9−b2 , x =
+−b
+
+9−b2 . Since A is positive
+
+definite, we know the critical point is a minimum.
+�
+
+4. Consider the quadratic form q(x, y, z) = 3x2 + 10xy + 3y2 + z2
+
+(1) Find the symmetric matrix A for q.
+(2) Find the eigenvalues and eigenvectors of A.
+
+(3) Give a formula for q in the coordinates of the vector
+
+xy
+z
+
+ in the eigenbasis of A.
+(4) Is q positive definite, negative definite or indefinite?
+
+Solution. (1) Since the only term containing z is teh z2 term, we can quickly see that
+
+A =
+
+3 5 05 3 0
+0 0 1
+
+
+(2) The characteristic polynomial is p(λ) = (λ2 − 6λ− 16)(1− λ) = (λ− 1)(λ− 8)(λ+ 2),
+
+so the eigenvalues are λ1 = 1, λ2 = −2, λ3 = 8. To find eigenvectors we compute the
+eigenspace of each eigenvalue.
+
+A− λ1I =
+
+2 5 05 2 0
+0 0 0
+
+ ,
+2
+
+Abel
+
+
+
+
+so v1 =
+
+00
+1
+
+.
+A− λ2I =
+
+5 5 05 5 0
+0 0 3
+
+ ,
+so v2 =
+
+−11
+0
+
+.
+A− λ3I =
+
+−5 5 05 −5 0
+0 0 −7
+
+ ,
+so v2 =
+
+11
+0
+
+
+(3) Normalizing the vectors before we get the orthonormal eigenbasis B =
+
+
+00
+
+1
+
+ ,
+−1/√21/√2
+
+0
+
+ ,
+1/√21/√2
+
+0
+
+.
+In order to write q in the coordinates of B, we need to write the vector
+
+xy
+z
+
+ in those co-
+ordinates. This is done by multiplying by the change of basis matrix IBE = B
+
+−1 = BT .
+
+We compute BTx =
+
+ zy−x√
+2
+
+x+y√
+2
+
+. We then get
+q(x, y, z) = z2 − 2(y − x√
+
+2
+)2 + 8(
+
+x+ y√
+2
+
+)2.
+
+(4) Since q has both negative and positive coefficients, it follows that it is indefinite.
+�
+
+5. ∗ Consider the matrix A =
+[
+0 −1
+1 2
+
+]
+.
+
+(1) List the eigenvalues and eigenvectors of A. Is A diagonalizable?
+(2) Check that B = ATA is diagonalizable (Hint: spectral theorem). Find an orthogonal
+
+matrix U =
+[
+u1 u2
+
+]
+and diagonal matrix D =
+
+[
+σ21 0
+0 σ22
+
+]
+such that B = UDUT .
+
+(3) Check that C = AAT is diagonalizable. Find an orthogonal matrix V =
+[
+v1 v2
+
+]
+and
+
+diagonal matrix D̃ =
+
+[
+µ21 0
+0 µ22
+
+]
+such that B = V D̃V T .
+
+(4) What is the relation between D and D̃?
+(5) Is U = V ?
+(6) Compute UDV T and compare it to A.
+
+Solution. (1) The characteristic polynomial is −λ(2 − λ) + 1 = (λ − 1)2. Hence we get a
+
+single eigenvalue λ = 1. A−I =
+[
+−1 −1
+1 1
+
+]
+so there is only one independent eigenvector.
+
+For instance
+
+[
+−1
+1
+
+]
+. Therefore A is not diagonalizable.
+
+3
+
+Abel
+
+
+Abel
+从哪来的这货？
+
+Abel
+
+
+
+
+(2) B = ATA =
+[
+1 2 2 5
+
+]
+. It is not hard to check the eigenvalues are the rational
+
+conjugates 3 + 2
+√
+
+2 and 3 − 2
+√
+
+2. The corresponding eigenvectors are
+
+[
+1
+
+1 +
+√
+
+2
+
+]
+, and[
+
+1
+
+1−
+√
+
+2
+
+]
+. Normalizing those we obtain
+
+u1 =
+
+ 1√4+2√2
+1+
+√
+2√
+
+4+2
+√
+2
+
+ ,u2 =
+ 1√4−2√2
+
+1−
+√
+2√
+
+4−2
+√
+2
+
+
+(3) C = AAT =
+
+[
+1 −2
+−2 5
+
+]
+. The same process will yield the same eigenvalues as for B but
+
+the eignevectors come out to be different. In particular
+
+v1 =
+
+ −1√4+2√2
+1+
+√
+2√
+
+4+2
+√
+2
+
+ ,v2 =
+ −1√4−2√2
+
+1−
+√
+2√
+
+4−2
+√
+2
+
+
+(4) We can indeed see that D = D̃.
+(5) U 6= V
+(6) Doing teh triple matrix product we can see that UDV T = A.
+
+�
+
+6. Let A =
+
+[
+1 4
+2 8
+
+]
+(1) Compute the eigenvalues σ21, σ
+
+2
+2 of AA
+
+T .
+(2) Compute the eigenvectors u1,u2. Check that they are orthonormal.
+
+Solution. (1) AAT =
+
+[
+17 34
+34 68
+
+]
+. The characteristic polynomial is λ2−85λ so the eigenvalues
+
+are σ21 = 85 and σ
+2
+2 = 0.
+
+(2) By computing the null space of A−85I, one can check that u1 =
+[ 1√
+
+5
+2√
+5
+
+]
+. We can also see
+
+that in the original matrix, the second column is twice the first one. So the a normalized
+
+eigenvector corresponding to σ22 = 0 is u2 =
+
+[−2√
+5
+1√
+5
+
+]
+.
+
+�
+
+Testing your understanding.
+
+7. True or False? Provide reasoning.
+
+(1) If A is a symmetric matrix then it is diagonalizable and all its eigenvalues are real.
+(2) If A is a diagonalizable matrix whose eigenvalues are all real then A is symmetric.
+(3) If A has an orthonormal eigenbasis then A is symmetric.
+(4) If f is a quadratic form whose associated matrix is positive definite then f has a maxi-
+
+mum at the origin.
+(5) If f is a quadratic form whose associated matrix is negative definite then f has a max-
+
+imum at the origin.
+(6) A symmetric matrix is always definite
+(7) A matrix whose eigenvalues are all non-negative is positive definite
+
+Solution. (1) True. This is the spectral theorem.
+(2) False. Take any strictly triangular matrix with real numbers on the diagonal.
+(3) True. If A is such a matrix, then it has a diagonalization of the form A = QDQT . Then
+
+AT = (QDQT )T = (QT )TDTQT = QDQT = A.
+(4) False, Positive definite quadratic form has a minimum.
+
+4
+
+Abel
+
+
+Abel
+
+
+Abel
+
+
+
+
+(5) True. Negative definite quadratic form has a maximum.
+(6) False. Pick a diagonal matrix with both negatives and positives in the main diagonal.
+(7) False. They could be zero.
+
+�
+
+Application.
+
+8 (Discrete Cosine Transform and MP3). Consider the matrix
+
+C :=
+
+√
+1
+
+2
+
+
+1√
+2
+
+cos π
+8
+
+cos 2π
+8
+
+cos 3π
+8
+
+1√
+2
+
+cos 3π
+8
+
+cos 6π
+8
+
+cos 9π
+8
+
+1√
+2
+
+cos 5π
+8
+
+cos 10π
+8
+
+cos 15π
+8
+
+1√
+2
+
+cos 7π
+8
+
+cos 14π
+8
+
+cos 21π
+8
+
+ .
+(1) Check that the columns of C form an orthonormal basis of Rn. Call this basis C.
+(2) Let v in Rn. Someone tells you that using C you can express v in terms of a sum of
+
+cosine functions oscillating at different frequencies. Explain why!
+(3) What is IC,E and how can it be used for frequency analysis of an audio signal?
+(4) When compressing audio signals, small high-frequency components can be discarded.
+
+Using this observation, develop a lossy compression algorithm for audio signals!
+
+Solution. (1) We first check columns are orthonormal. Define the columns of the matrix C to
+be
+
+C = [u0 u1 u2 · · · un−1].
+so that the element of each vector is given by
+
+ul,k = α(k) cos
+
+(
+(2l − 1)kπ
+
+2n
+
+)
+,
+
+where
+
+α(0) =
+
+√
+1
+
+n
+and α(k) =
+
+√
+2
+
+n
+, k = 1, · · · , n− 1.
+
+This means that
+
+uk =
+
+
+cos(kπ
+
+2n
+)
+
+cos(3kπ
+2n
+
+)
+...
+
+cos( (2n−1)kπ
+2n
+
+)
+
+ .
+Take for instance n = 4, then
+
+u0 =
+1
+
+2
+
+
+1
+1
+1
+1
+
+ , u1 = 1√2
+
+
+cos(π
+8
+)
+
+cos(3π
+8
+
+)
+cos(5π
+
+8
+)
+
+cos(7π
+8
+
+)
+
+ , u2 = 1√2
+
+
+cos(π
+4
+)
+
+cos(3π
+4
+
+)
+cos(5π
+
+4
+)
+
+cos(7π
+4
+
+)
+
+ = 12
+
+
+1
+−1
+−1
+1
+
+ , u3 = 1√2
+
+
+cos(3π
+8
+
+)
+cos(9π
+
+8
+)
+
+cos(15π
+8
+
+)
+cos(21π
+
+8
+)
+
+ .
+The orthogonality follows by direct verification, for instance,
+
+u1 · u2 =
+1√
+2
+
+cos
+π
+
+8
+× 1√
+
+2
+cos
+
+π
+
+4
++
+
+1√
+2
+
+cos
+3π
+
+8
+× 1√
+
+2
+cos
+
+3π
+
+4
+
++
+1√
+2
+
+cos
+5π
+
+8
+× 1√
+
+2
+cos
+
+5π
+
+4
++
+
+1√
+2
+
+cos
+7π
+
+8
+× 1√
+
+2
+cos
+
+7π
+
+4
+= 0,
+
+and the same for the other dot products, e.g. u0 · u2 = 0. To prove the general n case, one
+uses the trigonometric identity. Let m, k and n be integers, then one has
+
+n∑
+`=1
+
+cos
+
+(
+π
+
+2n
+(2`− 1)k
+
+)
+cos
+
+(
+π
+
+2n
+(2`− 1)m
+
+)
+=
+
+
+n, for k = m = 0,
+n
+2
+, for k = m 6= 0,
+
+0, otherwise.
+5
+
+
+
+To prove this, one re-writes the above as
+
+1
+
+2
+
+n∑
+`=1
+
+(
+cos
+
+π
+
+2n
+(2`− 1)(k −m) + cos π
+
+2n
+(2`− 1)(k +m)
+
+)
+.
+
+If k 6= m, then these functions are cosines (graph it!) and their sums over an interval number
+of half-cycles are zero. On the other hand, if k = m 6= 0, then the sum of the second term
+evaluates to zero (since it is a cosine) while the first term is cos(0) = 1 and summed over n
+terms and divided by two so that the end product is n
+
+2
+. Finally, if k = m = 0, the sum is n.
+
+This proves orthonormality.
+(2) Since C is a basis of Rn, we can write each vector v as a linear combination of u0, . . .un−1.
+Observe that The uk is a sample of n points on the graph of the function
+
+fk,n(x) :=
+
+√
+2
+
+n
+cos(
+
+k
+
+2
+x+
+
+kπ
+
+2n
+).
+
+Indeed, the entries of uk are the values of fk,n at 0,
+2π
+n
+, . . . , (n−1)2π
+
+n
+. Thus we can think of the
+
+vector uk as an approximation of the cosine function fk, n. For example, consider n = 4 and
+k = 2. Then the vector u2 contains value of f2,4 evaluated at 0, π/2, π and 3/2π. Below is the
+graph of f2,4 including the four data points.
+
+1 2 3 4 5 6
+
+-0.6
+
+-0.4
+
+-0.2
+
+0.2
+
+0.4
+
+0.6
+
+Observe that when we vary k, we get a wave with a different frequency. Here are the graphs
+for k = 1 and k = 3:
+
+1 2 3 4 5 6
+
+-0.6
+
+-0.4
+
+-0.2
+
+0.2
+
+0.4
+
+0.6
+
+1 2 3 4 5 6
+
+-0.6
+
+-0.4
+
+-0.2
+
+0.2
+
+0.4
+
+0.6
+
+6
+
+
+
+Let us express a vector v =
+
+
+1
+1
+−1
+0.5
+
+ in R4 as a linear combination of u0, . . .u4. One can calculate
+that 
+
+1
+1
+−1
+0.5
+
+ = 0.75u0 − 0.867837u1 + 0.75u2 − 1.17126u3.
+Set
+
+fv(x) = 0.75f0,4 − 0.867837f1,4 + 0.75f2,4 − 1.17126f3,4.
+Then the entries of v are precisely the values of fv at 0,
+
+π
+2
+, π, 3π
+
+2
+. In the graph below, the blue
+
+curve is fv. The other four curves are 0.75f0,4, −0.867837f1,4 and 0.75f2,4 and −1.17126f3,4.
+
+1 2 3 4 5 6
+
+-1.0
+
+-0.5
+
+0.5
+
+1.0
+
+(3) Since C is orthonormal, IC,E is simply CT . Thus multiplying a vector v in Rn by CT ,
+
+calculates vC. Thus if vC =
+
+ z0...
+zn−1
+
+, then
+v = z0u0 + · · ·+ zn−1un−1.
+
+Now think of v as an audio signal. So each entry of v corresponds to the amplitude of the audio
+signal at a given time. As observed above each ui corresponds to cosine wave of a different
+frequency. Thus each zi tells how much a signal of the corresponding frequency contributes to
+v.
+(4) Start with v. Calculate vC. Drop entries corresponding to higher frequency waves that are
+smaller than given threshold ε. Or: if you are willing to drop higher frequency components all
+together, take m < n and project v onto Span(u0, . . . ,um). (There are more tricks to it, but
+this is the basic mathematical idea behind it. See the Wikipedia article on data compression
+for more information.) �
+
+7
+
+
+	Computations
+	Testing your understanding
+	Application
+
