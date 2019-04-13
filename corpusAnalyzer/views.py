@@ -10,3 +10,7 @@ from django.core.serializers import serialize
 @require_http_methods(["GET", "POST"])
 def index_page(request):
     return render(request, "index.html")
+
+
+def handle_extract_file_term(request, queryid):
+    print("hi, I am here")
