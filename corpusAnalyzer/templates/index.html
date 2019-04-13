@@ -19,7 +19,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords"
           content="File Upload widget Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"/>
-    <script src="{% static 'js/bootbox.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootbox.min.js' %}"></script>
+    <script src="{% static 'js/FileSaver.js' %}"></script>
+    <script src="{% static 'js/filedrag.js' %}"></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -41,7 +46,7 @@
                 <div class="agileinfo">
                     <input type="submit" class="choose" value="Choose file..">
                     <h3>OR</h3>
-                    <input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
+                    <input type="file" id="fileselect" name="selected_files" multiple="multiple"/>
                     <div id="filedrag">drag and drop files here</div>
                 </div>
             </form>
@@ -51,7 +56,7 @@
             <button class="btnquery" onclick="send_file_to_backend()">click here to extract terms</button>
         </div>
         <div class="clearfix"></div>
-        <script src="{% static 'js/filedrag.js' %}"></script>
+
 
     </div>
 </div>
@@ -59,12 +64,27 @@
     <p> © 2016 File Upload widget. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
 </div>
 
-<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-
 <script>
+    var plain_text_data
+
+    function add_download_button() {
+        let download_button = document.createElement("button");
+        download_button.id = "technical_term_download_btn"
+        download_button.innerHTML = "download technical terms here"
+        download_button.addEventListener("click", function () {
+            var blob = new Blob([plain_text_data], {
+                type: "text/plain;charset=utf-8"
+            });
+            saveAs(blob, "extracted_terms.txt")
+        })
+        let appeared_div = document.getElementsByClassName("photos-upload-view")[0]
+        appeared_div.append(download_button)
+    }
+
     function send_file_to_backend() {
-        let formdata = new FormData($('#file_upload')[0])
-        alert(formdata)
+        let formdata = new FormData($('#upload')[0])
+        console.log(formdata)
+        console.log(formdata.entries())
         $.ajax({
             type: "POST",
             cache: false,
@@ -80,15 +100,15 @@
 
             error: function () {
                 bootbox.confirm("extraction failed, please check if files are valid", function () {
-                    spinHide()
                     location.reload()
                 })
             },
-            success: function (result_filename) {
-                spinHide()
-                console.log(result_filename)
-                if (result_filename != "failed") {
-                    bootbox.confirm({
+            success: function (result_text) {
+                add_download_button()
+                plain_text_data = result_text
+                console.log(result_text)
+                if (result_text !== "failed") {
+                    bootbox.alert({
                         title: "extraction succeed!",
                         message:
                             "<p>click technical term download button to download resulting technical terms</p>",
