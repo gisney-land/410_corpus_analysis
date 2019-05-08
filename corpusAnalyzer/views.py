@@ -46,3 +46,11 @@ def handle_extract_file_term(request, queryid):
 
 def return_extracted_file(request, queryid):
     pass
+
+
+def show_graph(request):
+    return render(request, "testgraph.html")
+
+
+def portal(request):
+    return render(request, "portal.html")
