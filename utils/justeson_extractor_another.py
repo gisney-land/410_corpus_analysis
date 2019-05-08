@@ -9,7 +9,7 @@ p = re.compile(reg_exp)
 
 
 def interpret_tag(tag):
-    if tag.startswith("NN") and not (tag.endswith("S")):
+    if tag.startswith("NN") and not(tag.endswith("S")):
         return "N"
     if tag.startswith("JJ"):
         return "A"
@@ -23,13 +23,13 @@ def get_tag_string(tags):
     return [interpret_tag(tag) for (tok, tag) in tags]
 
 
-def get_all_terms_in_sent(reg_exp, sent):
+def get_all_terms_in_sent(sent):
     tokens = nltk.word_tokenize(sent)
-    # tags = nltk.pos_tag(tokens)
+    #tags = nltk.pos_tag(tokens)
     pretrain = PerceptronTagger()
     tags = pretrain.tag(tokens)
     tags = [[tag[0], tag[1]] for tag in tags]
-    if (not (tags[0][1].startswith("NNP"))):
+    if(not(tags[0][1].startswith("NNP"))):
         tags[0][0] = tags[0][0].lower()
     tag_string = "".join(get_tag_string(tags))
     p = re.compile(reg_exp)
@@ -46,6 +46,17 @@ def get_all_terms_in_sent(reg_exp, sent):
     return res
 
 
+def get_all_terms_in_doc(doc, min_freq=2):
+    sents = nltk.sent_tokenize(doc)
+    terms = []
+    for sent in sents:
+        terms += get_all_terms_in_sent(sent)
+    term_cnt = Counter(terms)
+    for term in term_cnt:
+        if term_cnt[term] >= min_freq:
+            yield term
+
+
 if __name__ == '__main__':
     file_name = sys.argv[1]
     min_freq = int(sys.argv[2])
@@ -54,7 +65,7 @@ if __name__ == '__main__':
     with open(file_name, 'rb') as file:
         doc = file.read()
         doc = str(doc, "utf_8").encode('ascii', 'ignore').decode("ascii")
-        terms = get_all_terms_in_doc(reg_exp, doc, min_freq)
+        terms = get_all_terms_in_doc(doc, min_freq)
         out_file = open(out, 'w')
         out_file.write("\n".join(list(terms)))
         out_file.close()
