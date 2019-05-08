@@ -54,3 +54,5 @@ def show_graph(request):
 
 def portal(request):
     return render(request, "portal.html")
+
+
