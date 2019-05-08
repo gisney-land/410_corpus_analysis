@@ -1,0 +1,9 @@
+li, ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.noresize {
+  resize: none;
+  overflow: scroll;
+}
