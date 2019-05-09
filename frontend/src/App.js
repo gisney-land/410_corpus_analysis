@@ -25,6 +25,7 @@ export default class App extends Component {
       self.setState({
         data: response.data
       });
+      console.log(response.data)
     })
     .catch(function (error) {
       console.log(error);
