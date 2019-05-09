@@ -9,7 +9,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ""
+      text: "",
+      data: ""
     }
     this.handleOnChange = this.handleOnChange.bind(this);
     this.clearData = this.clearData.bind(this);
@@ -45,7 +46,6 @@ export default class App extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state.text);
   }
 
   render() {
@@ -74,7 +74,7 @@ export default class App extends Component {
           <div className="col-md-5">
           <Form>
             <Form.Group controlId="input_text">
-              <Form.Label>Example textarea</Form.Label>
+              <Form.Label>Text Input</Form.Label>
               <Form.Control
                 as="textarea" 
                 rows="20" 
@@ -90,7 +90,10 @@ export default class App extends Component {
           </div>
         </div>
         <div className="console">
-          Console
+          <h2>Console: </h2>
+          {
+            this.state.data
+          }
         </div>
       </div>
 
