@@ -66,7 +66,8 @@ def knowledge_graph(text_to_parse):
     console_str = "".join(uses_list) + "\n" + "".join(relates_list)
     # print(console_str)
     uses_list.extend(relates_list)
-    result_dict = {"console": uses_list, "graph": graph_list}
+    graph_json = {"nodes": term_list, "links": graph_list}
+    result_dict = {"console": uses_list, "graph": graph_json}
     return result_dict
 
 
