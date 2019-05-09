@@ -4,3 +4,6 @@ tika
 nltk
 scikit-learn
 numpy
+djangorestframework
+django-filter
+django-cors-headers

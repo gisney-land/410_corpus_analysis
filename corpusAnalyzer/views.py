@@ -8,6 +8,10 @@ from tika import parser
 import os.path
 from utils import justeson_extractor
 import re
+from django.views.decorators.csrf import csrf_exempt
+# from rest_framework.response import Response
+# from rest_framework import status
+# from rest_framework.decorators import api_view
 
 
 # Create your views here.
@@ -56,3 +60,8 @@ def portal(request):
     return render(request, "portal.html")
 
 
+# @api_view(["POST"])
+def handle_text(request):
+    books = ["Pro Python", "Fluent Python", "Speaking javascript", "The Go programming language"]
+    print(books)
+    return Response(status=status.HTTP_200_OK, data={"data": books})

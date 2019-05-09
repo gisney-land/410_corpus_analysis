@@ -18,7 +18,7 @@ export default class App extends Component {
 
   confirmData() {
     var self = this;
-    axios.post("http://localhost:5000/api/confirmData", {
+    axios.post("http://localhost:8000/api/confirmData", {
       text: self.state.text
     })
     .then(function (response) {
