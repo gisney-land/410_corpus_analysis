@@ -4,6 +4,7 @@ import './App.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import axios from "axios";
+import { Graph } from 'react-d3-graph';
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +12,8 @@ export default class App extends Component {
     this.state = {
       text: "",
       data: null,
+      nodes: [1, 2, 3],
+      links: [[1, 2], [2, 3]],
     }
     this.handleOnChange = this.handleOnChange.bind(this);
     this.clearData = this.clearData.bind(this);
@@ -25,7 +28,10 @@ export default class App extends Component {
     })
     .then(function (response) {
       self.setState({
-        data: response.data.console
+        data: response.data.console,
+        nodes: response.data.graph.nodes,
+        links: response.data.graph.links
+
       });
       console.log(response.data)
     })
@@ -60,6 +66,39 @@ export default class App extends Component {
         })
       );
     }
+  }
+
+  graphData() {
+    const nodes = this.state.nodes.map(node => {
+      return {id: node}
+    });
+    const links = this.state.links.map(link => {
+      return {source: link[0], target: link[1]}
+    });
+    const data = {
+      nodes: nodes,
+      links: links
+    };
+    const myConfig = {
+      nodeHighlightBehavior: true,
+      node: {
+          color: 'lightgreen',
+          size: 120,
+          highlightStrokeColor: 'blue'
+      },
+      link: {
+          highlightColor: 'lightblue'
+      }
+    };
+   
+  return <Graph
+      id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
+      data={data}
+      config={myConfig}
+  />;
+
+
+
   }
 
   render() {
@@ -100,7 +139,9 @@ export default class App extends Component {
           </Form>
           </div>
           <div className="col-md-5">
-            One of three columns
+            {
+              this.graphData()
+            }
           </div>
         </div>
         <div className="console">
