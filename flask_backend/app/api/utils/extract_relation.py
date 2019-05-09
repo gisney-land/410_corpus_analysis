@@ -6,6 +6,7 @@ import re
 import sys
 import logging
 import os
+from typing import Set
 
 logging.disable(logging.INFO)
 
@@ -27,7 +28,6 @@ def knowledge_graph(text_to_parse):
             pass
 
     term_list = list(je.get_all_terms_in_doc(documents, 5))
-
     for idx, term in enumerate(term_list):
         reg_term = re.sub("\.", "\.", term)
         documents = re.sub(reg_term, "-".join(term.split()), documents)
@@ -36,6 +36,8 @@ def knowledge_graph(text_to_parse):
         term_list[idx] = "-".join(term.split())
 
     term_list = list(set(term1).union(set(term_list)))
+    term_set: Set = set()
+
     sents = nltk.sent_tokenize(documents)
     tokens = [nltk.word_tokenize(sent) for sent in sents]
 
@@ -53,6 +55,8 @@ def knowledge_graph(text_to_parse):
             if (sim > 0.2 and term != term_):
                 uses_list.append(term + " -[:uses]-> " + term_)
                 graph_list.append([term, term_])
+                term_set.add(term)
+                term_set.add(term_)
 
     relates_list = []
     print("<<<")
@@ -60,13 +64,15 @@ def knowledge_graph(text_to_parse):
         for term_ in term_list:
             sim = model.wv.n_similarity([term, "topics"], [term_])
             if (sim > 0.15 and term != term_):
-                relates_list.append(term + " -[:related to]-> " + term_)
+                # relates_list.append(term + " -[:related to]-> " + term_)
                 graph_list.append([term, term_])
+                term_set.add(term)
+                term_set.add(term_)
 
     console_str = "".join(uses_list) + "\n" + "".join(relates_list)
     # print(console_str)
     uses_list.extend(relates_list)
-    graph_json = {"nodes": term_list, "links": graph_list}
+    graph_json = {"nodes": list(term_set), "links": graph_list}
     result_dict = {"console": uses_list, "graph": graph_json}
     return result_dict
 
