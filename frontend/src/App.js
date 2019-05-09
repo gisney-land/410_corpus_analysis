@@ -82,12 +82,12 @@ export default class App extends Component {
     const myConfig = {
       nodeHighlightBehavior: true,
       node: {
-          color: 'lightgreen',
-          size: 120,
-          highlightStrokeColor: 'blue'
+          color: 'blue',
+          size: 500,
+          highlightStrokeColor: 'green'
       },
       link: {
-          highlightColor: 'lightblue'
+          highlightColor: 'lightreen'
       }
     };
    
