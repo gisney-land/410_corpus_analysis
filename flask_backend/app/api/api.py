@@ -1,10 +1,15 @@
 from . import api_bp
-from flask import jsonify, request
+from flask import request
+from .utils import *
+import json
+from flask import jsonify
 
 @api_bp.route("/confirmData", methods=('GET','POST'))
 def confirmData():
     print(request)
     if request.method == "POST":
-        print(request.data)
-        return "hello", 200
-    return "hello", 200
+        data = json.loads(request.data)
+        result = knowledge_graph(data["text"])
+        print(result)
+        return jsonify(result), 200
+    # return "hello", 200

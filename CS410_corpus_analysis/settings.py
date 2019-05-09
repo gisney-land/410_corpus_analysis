@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corpusAnalyzer.apps.CorpusanalyzerConfig',
     'rest_framework',
-    'corsheaders',
-    'api',
-    'core'
+    # 'corsheaders',
+    # 'api',
+    # 'core'
 ]
 
 MIDDLEWARE = [
