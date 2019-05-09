@@ -10,11 +10,12 @@ export default class App extends Component {
     super(props);
     this.state = {
       text: "",
-      data: ""
+      data: null,
     }
     this.handleOnChange = this.handleOnChange.bind(this);
     this.clearData = this.clearData.bind(this);
     this.confirmData = this.confirmData.bind(this);
+    this.consoleData = this.consoleData.bind(this);
   }
 
   confirmData() {
@@ -46,6 +47,19 @@ export default class App extends Component {
     this.setState({
       [name]: value
     });
+  }
+
+  consoleData() {
+    if (this.state.data === null) {
+      return ""
+    }
+    else {
+      return (
+        this.state.data.map((entry, index) => {
+          return <li key={index}>{entry}</li>
+        })
+      );
+    }
   }
 
   render() {
@@ -91,9 +105,9 @@ export default class App extends Component {
         </div>
         <div className="console">
           <h2>Console: </h2>
-          {
-            this.state.data
-          }
+            {
+              this.consoleData()
+            }
         </div>
       </div>
 
